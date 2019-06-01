@@ -148,6 +148,7 @@ class Age:
         self.male_age = male_age
         self.female_age = female_age
 
+
 class Population:
 
     def __init__(self, population, male_population, female_population):
@@ -232,4 +233,4 @@ class ZipCode:
             'WI': 'Wisconsin',
             'WV': 'West Virginia',
             'WY': 'Wyoming'
-        }[self.state]
+        }.get(self.state, None)
