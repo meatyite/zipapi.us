@@ -14,8 +14,10 @@ class ZipAPI:
 
     def __init__(self, apikey="", username="", password=""):
         self.apikey = apikey
-        self.username = username
-        self.password = password
+        self.auth = HTTPBasicAuth(
+            username=username,
+            password=password
+        )
 
     def GetZipInfo(self, zipcode):
         zipcode_json = requests.get(
@@ -24,11 +26,7 @@ class ZipAPI:
                 'X-API-KEY': self.apikey,
                 'fields': 'geolocation,population'
             },
-            auth=
-            HTTPBasicAuth(
-                self.username,
-                self.password
-            )
+            auth=self.auth
         ).content.decode()
         zipcode_json = json.loads(zipcode_json)['data']
         return ZipCode(
@@ -48,11 +46,7 @@ class ZipAPI:
                 'city': city,
                 'state': state
             },
-            auth=
-            HTTPBasicAuth(
-                self.username,
-                self.password
-            )
+            auth=self.auth
         ).content.decode()
         zips_json = json.loads(zips_json)
         return zips_json['data']
@@ -67,11 +61,7 @@ class ZipAPI:
                 'zip2': str(zip2),
                 'unit': distanceUnit
             },
-            auth=
-            HTTPBasicAuth(
-                self.username,
-                self.password
-            )
+            auth=self.auth
         ).content.decode()
         zips_json = json.loads(zips_json)['data']
         return zips_json['distance']
@@ -84,11 +74,7 @@ class ZipAPI:
                 'X-API-KEY': self.apikey,
                 'radius': str(radius)
             },
-            auth=
-            HTTPBasicAuth(
-                self.username,
-                self.password
-            )
+            auth=self.auth
         ).content.decode()
         zips_json = json.loads(zips_json)['data']
         for zipData in zips_json:
@@ -107,11 +93,7 @@ class ZipAPI:
                 'X-API-KEY': self.apikey,
                 'fields': 'male_population,female_population'
             },
-            auth=
-            HTTPBasicAuth(
-                self.username,
-                self.password
-            )
+            auth=self.auth
         ).content.decode()
         population_json = json.loads(population_json)['data']
         return Population(
@@ -127,11 +109,7 @@ class ZipAPI:
                 'X-API-KEY': self.apikey,
                 'fields': 'male_age,female_age'
             },
-            auth=
-            HTTPBasicAuth(
-                self.username,
-                self.password
-            )
+            auth=self.auth
         ).content.decode()
         age_json = json.loads(age_json)['data']
         return Age(

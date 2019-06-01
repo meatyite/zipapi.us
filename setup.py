@@ -1,7 +1,7 @@
 from distutils.core import setup
 
 setup(name='zipapi.us',
-      version='1.0.1',
+      version='1.0.2',
       description='Unoffical zipapi.us wrapper.',
       long_description='An unoffical zipapi.us object oriented wrapper.',
       author='sl4v',
