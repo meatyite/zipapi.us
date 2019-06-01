@@ -13,6 +13,6 @@ $ pip3 install zipapi.us requests
 On linux: <br/>
 ```
 $ git clone https://github.com/sl4vkek/zipapi.us.git
-$ cd zipapi-us
+$ cd zipapi.us
 $ python3 setup.py install
 ```
