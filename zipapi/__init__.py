@@ -152,7 +152,7 @@ class ZipCode:
         self.long = long
         self.population = population
 
-    def GetFullStateName(self):
+    def get_full_state_name(self):
         return {
             'AK': 'Alaska',
             'AL': 'Alabama',
