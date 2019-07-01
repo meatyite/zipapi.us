@@ -6,8 +6,8 @@ from enum import Enum
 
 class DistanceUnit(Enum):
 
-    Miles = 'mi'
-    Kilometers = 'km'
+    miles = 'mi'
+    kilometers = 'km'
 
 
 class ZipAPI:
@@ -19,7 +19,7 @@ class ZipAPI:
             password=password
         )
 
-    def GetZipInfo(self, zipcode):
+    def get_zip_info(self, zipcode):
         zipcode_json = requests.get(
             'https://service.zipapi.us/zipcode/' + str(zipcode),
             params={
@@ -38,7 +38,7 @@ class ZipAPI:
             population=zipcode_json['population']
         )
 
-    def GetZipsForCityAndState(self, city, state):
+    def get_zips_for_city_and_state(self, city, state):
         zips_json = requests.get(
             'https://service.zipapi.us/zipcode/zips/',
             params={
@@ -51,7 +51,7 @@ class ZipAPI:
         zips_json = json.loads(zips_json)
         return zips_json['data']
 
-    def GetDistance(self, zip1, zip2, distanceUnit=DistanceUnit.Miles):
+    def get_distance(self, zip1, zip2, distanceUnit=DistanceUnit.miles):
         distanceUnit = distanceUnit.value
         zips_json = requests.get(
             'https://service.zipapi.us/zipcode/distance',
@@ -66,7 +66,7 @@ class ZipAPI:
         zips_json = json.loads(zips_json)['data']
         return zips_json['distance']
 
-    def GetZipCodesFromRadius(self, zipcode, radius):
+    def get_zip_codes_from_radius(self, zipcode, radius):
         zips = []
         zips_json = requests.get(
             'https://service.zipapi.us/zipcode/radius/' + str(zipcode),
@@ -86,7 +86,7 @@ class ZipAPI:
             )
         return zips
 
-    def GetPopulationDataForZip(self, zip):
+    def get_population_data_for_zip(self, zip):
         population_json = requests.get(
             'https://service.zipapi.us/population/zipcode/' + str(zip),
             params={
@@ -102,7 +102,7 @@ class ZipAPI:
             female_population=population_json['female_population']
         )
 
-    def GetAverageAgeForZip(self, zip):
+    def get_average_age_for_zip(self, zip):
         age_json = requests.get(
             'https://service.zipapi.us/age/zipcode/' + str(zip),
             params={
